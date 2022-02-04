@@ -1,0 +1,151 @@
+<html>
+<head>
+<style>
+
+input[type=button],input[type=submit]
+{
+background-color: white;
+border: none;
+color:black;
+font-weight: bold;
+padding: 6px 20px;
+text-align: center;
+font-size:16px;
+margin: 4px 4px;
+box-shadow: 3px 3px 3px black;
+position: center;
+font-family: Arial;
+}
+
+input[type="text"]
+{
+font-family: Arial;
+color:black;
+background-color:white;
+padding:4px;
+text-align: left;
+font-size: 16px;
+margin: 4px 4px;
+box-shadow: 2px 2px 2px black;
+}
+
+body
+{
+    background-image: url('fondo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+}
+
+label
+{
+font-family: Arial;
+padding: 4px;
+font-weight: bold;
+color: black;
+text-align: center;
+align:center;
+font-size: 18px;
+}
+
+table {     
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;    
+  margin: 45px;     
+  width: 480px; text-align: left;    
+  border-collapse: collapse; }
+
+th {     
+   font-size: 13px;     
+   font-weight: normal;    
+   padding: 8px;     
+   background: #b9c9fe;
+   border-top: 4px solid #aabcfe;    
+   border-bottom: 1px solid #fff; 
+   color: #039; }
+
+td {    
+   padding: 8px;     
+   background: #e8edff;     
+   border-bottom: 1px solid #fff;
+   color: #669;    
+   border-top: 1px solid transparent; }
+
+tr:hover td { background: #d0dafd; color: #339; }
+caption {
+   padding: 0.3em;
+   color: #fff;
+    background: #000;
+}
+
+
+</style>
+</head>
+
+<body>
+<center>
+<form name="Registro" action="registro.php" method="post">
+<table border="1">
+
+<tr>
+<td colspan="6"><label>Registrar Alumno</label></td>
+</tr>
+
+<tr>
+	<td><label>Id</label></td><td><input type="text" value="" maxlength="7" name="txtid"></td>
+	<td><label>Nombre</label></td><td><input type="text" value="" maxlength="50" name="txtnombre"></td>
+</tr>
+<tr>
+	<td><label>Apellidos</label></td><td><input type="text" value="" maxlength="50" name="txtapellidos"></td>
+	<td><label>Matricula</label></td><td><input type="text" value="" maxlength="50" name="txtmatricula"></td>
+</tr>
+<tr>
+	<td><label>Status</label></td><td><input type="text" value="" maxlength="50" name="txtstatus"></td>
+	<td><label>Promedio</label></td><td><input type="text" value="" maxlength="5" name="txtpromedio"></td>
+</tr>
+
+
+<tr><td colspan="4" align="center">
+<input type="submit" value="Nuevo" name="limpiardatos" >
+<input type="submit" value="Guardar" name="guardardatos" >
+<input type="submit" value="Modificar" name="modificardatos" >
+<input type="submit" value="Eliminar" name="eliminardatos">
+</td>
+</tr>
+
+<tr><td colspan="4"><label>Listado de alumnos </label></td></tr>
+
+<tr><td><label>Id</label></td>
+	<td><label>Nombre</label></td>
+	<td><label>Apellidos</label></td>
+	<td><label>Matricula</label></td>
+        <td><label>Status</label></td>
+        <td><label>Promedio</label></td>
+</tr>
+
+<?php 
+$sql="SELECT * FROM datos";
+$result=mysqli_query($conn,$sql);
+
+while($mostrar=mysqli_fetch_array($result))
+{
+?>
+<tr> <td><?php echo $mostrar['id'] ?>
+	<td><?php echo $mostrar['nombre'] ?>
+	<td><?php echo $mostrar['apellidos'] ?>
+	<td><?php echo $mostrar['matricula'] ?>
+	<td><?php echo $mostrar['status'] ?>
+	<td><?php echo $mostrar['promedio'] ?>
+
+</tr>
+<?php
+}
+
+?>
+
+</table>
+</form>
+</center>
+</body>
+</html>
